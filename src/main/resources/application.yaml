@@ -1,0 +1,38 @@
+server:
+  port: 9005
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/spot_assessor
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+    tomcat:
+      test-while-idle: true
+      validation-query: SELECT 1
+    initialization-mode: never
+    platform: mariadb
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+  signing-key: "MaYzkSjmkzPC57L"
+  encoding-strength: 256
+  security-realm: "AuthenticationService JWT Realm"
+  jwt:
+    client-id: "authenticationjwtclient"
+    client-secret: "$2a$10$FgND65B4rKfQe26zyxv2GOu9iP.Cgi4tJtp1MbP1JU.P9v4bnEKP2"
+    grant-type: "password"
+    scope-read: "read"
+    scope-write: "write"
+    resource-ids: "testjwtresourceid"
+
+  session:
+    timeout: 180
